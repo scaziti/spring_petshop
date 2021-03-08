@@ -34,4 +34,10 @@ public class ProdutoController
     			.map(resp -> ResponseEntity.ok(resp))
     			.orElse(ResponseEntity.notFound().build());
     }
+    
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<ProdutoModel>> GetByNome(@PathVariable String nome)
+    {
+    	return ResponseEntity.ok(this.repository.findAllByNomeContainingIgnoreCase(nome));
+    }
 }
